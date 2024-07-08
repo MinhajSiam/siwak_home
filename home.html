@@ -27,7 +27,7 @@
         }
 
         .logo {
-            width: 10%;
+            width: 7%;
         }
 
         .cat-box {
@@ -45,10 +45,18 @@
             row-gap: 5px;
             justify-content: space-between;
         }
+
+        @media screen and (max-width:600px) {
+            .section-1 {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 10px;
+                column-gap: 5px;
+            }
+        }
     </style>
 </head>
 
-<body class="container">
+<body>
     <header>
         <nav class="navbar bg-light navbar-expand-lg">
             <div class="container-fluid">
@@ -92,7 +100,7 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="container">
         <div class="section-1">
             <div class="cat-box"></div>
             <div class="cat-box"></div>
