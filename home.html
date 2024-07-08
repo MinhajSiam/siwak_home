@@ -38,6 +38,18 @@
             box-shadow: 3px 3px 5px gray;
         }
 
+        .section-1 {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 760px 1fr;
+            column-gap: 5px;
+            justify-content: space-between;
+        }
+
+        .carousel {
+            box-shadow: 3px 3px 5px gray;
+        }
+
         .section-2 {
             margin-top: 30px;
             display: grid;
@@ -101,6 +113,46 @@
         </nav>
     </header>
     <main class="container">
+        <!-- Slider Start-->
+        <div class="section-1">
+
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/images/Screenshot 2024-07-08 190404.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/images/Screenshot 2024-07-08 190404.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/images/Screenshot 2024-07-08 190404.png" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div style="height: 290px;" class="cat-box"></div>
+        </div>
+        <!-- Slider End -->
+
+        <!-- Cat Start -->
         <div class="section-2">
             <div class="cat-box"></div>
             <div class="cat-box"></div>
@@ -109,6 +161,7 @@
             <div class="cat-box"></div>
             <div class="cat-box"></div>
         </div>
+        <!-- Cat End -->
     </main>
 
 
