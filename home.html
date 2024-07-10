@@ -27,6 +27,10 @@
             box-shadow: 0px 3px 10px #0A3A40;
         }
 
+        .nav-link {
+            color: #fff !important;
+        }
+
         .logo {
             width: 7%;
         }
@@ -80,6 +84,8 @@
             justify-content: center;
             background-color: #005C53;
             color: #fff;
+            padding: 5px 0;
+
         }
 
         .section-4 {
@@ -154,17 +160,42 @@
         #wst-coats img {
             width: 100%;
             height: 250px;
+            cursor: pointer;
         }
 
         #discount {
             background-image: linear-gradient(45deg, #0A3A40, #1D7373, #1D7373, #0A3A40);
+            cursor: pointer;
+        }
+
+        .navbar-brand {
+            color: #fff;
+        }
+
+        .btn-outline-success {
+            border-color: #fff;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #fff;
+            color: #000 !important;
+            border-color: #fff;
+        }
+
+        .navbar-toggler {
+            background-color: transparent;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #1D7373!important;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary"
+            style="background-color: #1D7373!important; position: sticky; top: 0;">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
@@ -172,7 +203,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a class="navbar-brand" href="#">Hidden brand</a>
+                    <a class="navbar-brand" href="#">SIWAK</a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -181,12 +212,12 @@
                             <a class="nav-link" href="#">Link</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            <a class="nav-link" href="#">Disabled</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success text-white" type="submit">Search</button>
                     </form>
                 </div>
             </div>
