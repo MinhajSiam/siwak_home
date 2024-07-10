@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"] {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Book Your Appointment</h1>
+    <form id="appointmentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+        <br>
+        <button type="submit">Submit Appointment</button>
+    </form>
+    <p id="message"></p>
+    <!-- <script src="script.js"></script> -->
+    <script>
+        const form = document.getElementById('appointmentForm');
+        const messageEl = document.getElementById('message');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            // Send data to Google Sheet using Google Apps Script (explained later)
+            sendDataToSheet(name, email, date, time);
+
+            form.reset();
+            messageEl.textContent = 'Appointment Submitted Successfully!';
+            messageEl.style.color = 'green';
+        });
+
+        function sendDataToSheet(name, email, date, time) {
+            // Replace with your actual Google Apps Script function URL
+            const url = 'https://script.google.com/macros/s/AKfycbzicwCNNJSVKEaiuNqSQC8CcKy6CD8l1IE5_D6y3MlGExvvcbhUcOmKcugfyZuiG8Ol6A/exec';
+
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    name,
+                    email,
+                    date,
+                    time,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    messageEl.textContent = 'Error submitting appointment.';
+                    messageEl.style.color = 'red';
+                });
+        }
+    </script>
+</body>
+
+</html>
