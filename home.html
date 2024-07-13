@@ -8,9 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             background-color: #F8F9FA;
@@ -226,7 +228,7 @@
             /* width: 200px; */
             background-color: #FFF;
             padding-bottom: 20px;
-            border-radius: 7px;
+            /* border-radius: 7px; */
             box-shadow: 2px 2px 4px #0A3A40;
             transition: 0.3s ease;
         }
@@ -283,8 +285,9 @@
 
         @media screen and (max-width:600px) {
             .cards {
-                grid-template-columns: repeat(2, 220px);
+                grid-template-columns: repeat(2, 210px);
                 row-gap: 15px;
+                column-gap: 10px;
             }
         }
 
@@ -309,6 +312,14 @@
         .regular-price {
             color: #000;
             font-size: 16px;
+        }
+
+        .checked {
+            color: orange !important;
+        }
+
+        .unchecked {
+            color: gray !important;
         }
     </style>
 </head>
@@ -435,7 +446,14 @@
                         <img src="panjabi.jpg" alt="">
                         <div class="card-text">
                             <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
-                            <h1 class="price">Tk. 149 <sub><s>Tk. 200</s></sub></h1>
+                            <h1 class="price">Tk. 149 <sub><s>Tk. 200</s></sub></h1><br>
+                            <div class="star-rating" style="display: flex; margin-top: -25px;"><span
+                                    class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                            </div>
                             <div class="cart-btn">
                                 <a href="#">Add to cart</a>
                             </div>
@@ -445,8 +463,15 @@
                         <img src="panjabi.jpg" alt="">
                         <div class="card-text">
                             <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
-                            <h1 class="price">Tk. 149</h1>
-                            <div class="btn">
+                            <h1 class="price">Tk. 149 <sub><s>Tk. 200</s></sub></h1><br>
+                            <div class="star-rating" style="display: flex; margin-top: -25px;"><span
+                                    class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                            </div>
+                            <div class="cart-btn">
                                 <a href="#">Add to cart</a>
                             </div>
                         </div>
@@ -455,8 +480,15 @@
                         <img src="panjabi.jpg" alt="">
                         <div class="card-text">
                             <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
-                            <h1 class="price">Tk. 149 </h1>
-                            <div class="btn">
+                            <h1 class="price">Tk. 149 <sub><s>Tk. 200</s></sub></h1><br>
+                            <div class="star-rating" style="display: flex; margin-top: -25px;"><span
+                                    class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                            </div>
+                            <div class="cart-btn">
                                 <a href="#">Add to cart</a>
                             </div>
                         </div>
@@ -465,8 +497,15 @@
                         <img src="panjabi.jpg" alt="">
                         <div class="card-text">
                             <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
-                            <h1 class="price">Tk. 149 </h1>
-                            <div class="btn">
+                            <h1 class="price">Tk. 149 <sub><s>Tk. 200</s></sub></h1><br>
+                            <div class="star-rating" style="display: flex; margin-top: -25px;"><span
+                                    class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                            </div>
+                            <div class="cart-btn">
                                 <a href="#">Add to cart</a>
                             </div>
                         </div>
@@ -475,12 +514,20 @@
                         <img src="panjabi.jpg" alt="">
                         <div class="card-text">
                             <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
-                            <h1 class="price">Tk. 149</h1>
-                            <div class="btn">
+                            <h1 class="price">Tk. 149 <sub><s>Tk. 200</s></sub></h1><br>
+                            <div class="star-rating" style="display: flex; margin-top: -25px;"><span
+                                    class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                                <span class="fa fa-star unchecked"></span>
+                            </div>
+                            <div class="cart-btn">
                                 <a href="#">Add to cart</a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
