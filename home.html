@@ -17,6 +17,10 @@
             background-image: linear-gradient(45deg, #0A3A40, #1D7373, #1D7373, #0A3A40);
         }
 
+        main {
+            margin: 0 100px;
+        }
+
         /* Make the image fully responsive */
         .carousel-inner img {
             width: 100%;
@@ -46,7 +50,7 @@
         .section-1 {
             margin-top: 30px;
             display: grid;
-            grid-template-columns: 760px 1fr;
+            grid-template-columns: 1000px 1fr;
             column-gap: 5px;
             justify-content: space-between;
         }
@@ -82,7 +86,7 @@
             font-weight: 500;
             display: grid;
             justify-content: center;
-            background-color: #005C53;
+            /* background-color: #005C53; */
             color: #fff;
             padding: 5px 0;
 
@@ -95,7 +99,7 @@
 
         .top-selling,
         .new-arrival {
-            background-color: #fff;
+            /* background-color: #fff; */
             height: 300px;
             box-shadow: 3px 3px 5px #0A3A40;
             padding: 15px;
@@ -129,7 +133,8 @@
             text-align: center;
             font-size: 17px;
             position: relative;
-            bottom: -90px;
+            align-items: center;
+            bottom: -260px;
         }
 
         #clockdiv>div {
@@ -181,6 +186,36 @@
         a.nav-link {
             color: #000 !important;
         }
+
+        .title-line {
+            position: relative;
+            background-color: transparent;
+            /* z-index: 2; */
+        }
+
+        .title-line::before {
+            content: "";
+            display: block;
+            width: 220px;
+            height: 1px;
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            z-index: -2;
+        }
+
+        .title-line::after {
+            content: "";
+            display: block;
+            width: 220px;
+            height: 1px;
+            background-color: #fff;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            z-index: -2;
+        }
     </style>
 </head>
 
@@ -211,7 +246,7 @@
             </div>
         </nav>
     </header>
-    <main class="container">
+    <main>
         <!-- Slider Start-->
         <div class="section-1">
             <!-- Carousel start -->
@@ -240,7 +275,7 @@
             </div>
             <!-- Carousel end -->
             <!-- Offer start -->
-            <div style="height: 291px; padding: 10px; text-align: center;" class="cat-box" id="discount">
+            <div style="height: 383px; padding: 10px; text-align: center;" class="cat-box" id="discount">
                 <!-- Title or heading -->
                 <!-- <h1>Countdown Clock</h1> -->
                 <div id="clockdiv">
@@ -295,12 +330,12 @@
         <!-- Section-3 -->
         <div class="section-3">
             <div class="top-selling">
-                <span>Top Selling</span>
+                <span class="title-line">Top Selling</span>
             </div>
         </div>
         <div class="section-4">
             <div class="new-arrival">
-                <span>New Arrival</span>
+                <span class="title-line">New Arrival</span>
             </div>
         </div>
     </main>

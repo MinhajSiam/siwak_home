@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .card-item {
+
+            /* width: 200px; */
+            padding-bottom: 20px;
+            border-radius: 7px;
+            box-shadow: 2px 2px 4px rgb(169, 169, 169);
+            transition: 0.3s ease;
+        }
+
+        .card-item:hover {
+            box-shadow: 3px 3px 8px rgb(169, 169, 169);
+        }
+
+        .card-item img {
+            width: 100%;
+        }
+
+        .card-item h3 {
+            color: gray;
+        }
+
+        .btn a {
+            color: #000;
+            padding: 5px 25px;
+            border-radius: 20px;
+            box-shadow: 3px 3px 13px rgb(169, 169, 169);
+            text-decoration: none;
+            transition: 0.1s ease-in;
+        }
+
+        .btn a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .card-text {
+            padding: 10px 10px;
+        }
+
+        .card-head {
+            margin-top: -7px;
+            font-size: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: aquamarine;
+        }
+
+        .btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(6, 235px);
+            justify-content: space-around;
+        }
+
+        @media screen and (max-width:600px) {
+            .cards {
+                grid-template-columns: repeat(2, 220px);
+                row-gap: 15px;
+            }
+        }
+
+        .card-head a {
+            text-decoration: none;
+            color: gray;
+            transition: 0.1s ease;
+        }
+
+        .card-head a:hover {
+            color: rgb(1, 216, 209);
+        }
+
+        .price {
+            font-size: 18px;
+            margin-top: -7px;
+            margin-bottom: 17px;
+        }
+
+        .regular-price {
+            color: gray;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cards">
+        <div class="card-item">
+            <img src="panjabi.jpg" alt="">
+            <div class="card-text">
+                <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
+                <h1 class="price">Tk. 149 <span class="regular-price"><sup><s>Tk. 200</s></sup></span>
+                </h1>
+                <div class="btn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <img src="panjabi.jpg" alt="">
+            <div class="card-text">
+                <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
+                <h1 class="price">Tk. 149 <span class="regular-price"><sup><s>Tk. 200</s></sup></span>
+                </h1>
+                <div class="btn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <img src="panjabi.jpg" alt="">
+            <div class="card-text">
+                <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
+                <h1 class="price">Tk. 149 <span class="regular-price"><sup><s>Tk. 200</s></sup></span>
+                </h1>
+                <div class="btn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <img src="panjabi.jpg" alt="">
+            <div class="card-text">
+                <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
+                <h1 class="price">Tk. 149 <span class="regular-price"><sup><s>Tk. 200</s></sup></span>
+                </h1>
+                <div class="btn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <img src="panjabi.jpg" alt="">
+            <div class="card-text">
+                <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
+                <h1 class="price">Tk. 149 <span class="regular-price"><sup><s>Tk. 200</s></sup></span>
+                </h1>
+                <div class="btn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-item">
+            <img src="panjabi.jpg" alt="">
+            <div class="card-text">
+                <h3 class="card-head"><a href="#">Exclusive Premium Panjabi SIWAK</a></h3>
+                <h1 class="price">Tk. 149 <span class="regular-price"><sup><s>Tk. 200</s></sup></span>
+                </h1>
+                <div class="btn">
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
