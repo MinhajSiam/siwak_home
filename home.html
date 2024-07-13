@@ -105,10 +105,11 @@
 
         .top-selling,
         .new-arrival {
-            /* background-color: #fff; */
-            /* height: 300px; */
-            box-shadow: 3px 3px 5px #0A3A40;
-            padding: 15px;
+            /* background-color: #fff;
+            height: 300px;
+            box-shadow: 3px 3px 3px #0A3A40;
+            padding: 15px; */
+            margin-top: 55px;
         }
 
         footer {
@@ -223,6 +224,16 @@
             z-index: -2;
         }
 
+        @media screen and (max-width:600px) {
+            .title-line::before {
+                width: 170px;
+            }
+
+            .title-line::after {
+                width: 170px;
+            }
+        }
+
         .card-item {
 
             /* width: 200px; */
@@ -281,6 +292,7 @@
             display: grid;
             grid-template-columns: repeat(5, 235px);
             justify-content: space-around;
+            margin-top: 5px;
         }
 
         @media screen and (max-width:600px) {
