@@ -1,318 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>Infinite Card Slider JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Fontawesome Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="script.js" defer></script>
     <style>
-        .med-related-prod-wrap {
-            margin: 40px 16px 0px 16px;
-        }
+        /* Import Google font - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-        .med-related-prod-wrap .related-prod-heading {
-            margin: 0px;
-            font-size: 18px;
-        }
-
-        .med-related-prod-wrap .med-rel-prod-slider {
-            display: flex;
-            column-gap: 8px;
-            margin-top: 20px;
-            overflow: auto;
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
-            scroll-behavior: smooth;
-        }
-
-        .med-related-prod-wrap .med-rel-prod-slider::-webkit-scrollbar {
-            display: none;
-        }
-
-        .med-slider-arrow-section {
-            display: none;
-            align-items: center;
-            justify-content: end;
-            margin-top: 40px;
-            column-gap: 10px;
-        }
-
-        .med-slider-arrow {
-            --size: 30px;
-            z-index: 9;
-            background: #ffffff;
-            width: var(--size);
-            height: var(--size);
-            border-radius: var(--size);
-            -webkit-transition: opacity .5s, visibility .5s;
-            transition: opacity .5s, visibility .5s;
-            border: 1px solid #dfe1e5;
-            box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 4px 8px 0 rgb(0 0 0 / 20%);
+        * {
+            margin: 0;
             padding: 0;
-            transform: translate(0, -50%);
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            padding: 0 35px;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to left top, #031A9A, #8B53FF);
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+        }
+
+        .wrapper i {
+            top: 50%;
+            height: 50px;
+            width: 50px;
             cursor: pointer;
-            outline: 0 !important;
-            transition: 0.2s ease-in-out;
+            font-size: 1.25rem;
+            position: absolute;
+            text-align: center;
+            line-height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+            transform: translateY(-50%);
+            transition: transform 0.1s linear;
         }
 
-        .med-slider-arrow:after {
-            background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 12H19' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 5L19 12L12 19' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-size: 16px;
-            content: '';
-            width: var(--size);
-            height: var(--size);
-            display: block;
-            background-repeat: no-repeat;
-            background-position: 49% 50%;
-            transform: rotate(180deg);
+        .wrapper i:active {
+            transform: translateY(-50%) scale(0.85);
         }
 
-        .med-slider-arrow.btn-left {
+        .wrapper i:first-child {
+            left: -22px;
+        }
+
+        .wrapper i:last-child {
+            right: -22px;
+        }
+
+        .wrapper .carousel {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% / 3) - 12px);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 16px;
+            border-radius: 8px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .carousel::-webkit-scrollbar {
             display: none;
         }
 
-        .med-slider-arrow.med-slider-next:after {
-            transform: rotate(360deg);
+        .carousel.no-transition {
+            scroll-behavior: auto;
         }
 
-        .med-rel-prod-slider .med-product-card {
-            display: inline-grid;
-            grid-auto-rows: min-content auto;
-            padding: 32px 12px;
-            background: #FFFFFF;
-            border: 1px solid #E5E5F0;
-            border-radius: 15px;
-            width: 224px;
-            flex-shrink: 0;
+        .carousel.dragging {
+            scroll-snap-type: none;
+            scroll-behavior: auto;
+        }
+
+        .carousel.dragging .card {
+            cursor: grab;
+            user-select: none;
+        }
+
+        .carousel :where(.card, .img) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel .card {
+            scroll-snap-align: start;
+            height: 342px;
+            list-style: none;
+            background: #fff;
             cursor: pointer;
-            overflow: hidden;
+            padding-bottom: 15px;
+            flex-direction: column;
+            border-radius: 8px;
         }
 
-        .med-rel-prod-slider .med-product-card:hover .related-prod-img {
-            transform: scale(1.1);
+        .carousel .card .img {
+            background: #8B53FF;
+            height: 148px;
+            width: 148px;
+            border-radius: 50%;
         }
 
-        .med-product-card .related-prod-wrapper {
+        .card .img img {
+            width: 140px;
             height: 140px;
-            width: 100%;
-            overflow: hidden;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
         }
 
-        .related-prod-wrapper .related-prod-img {
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-            transition: 0.5s all ease-in-out;
+        .carousel .card h2 {
+            font-weight: 500;
+            font-size: 1.56rem;
+            margin: 30px 0 5px;
         }
 
-        .med-product-card .rel-med-name {
-            font-size: 24px;
-            padding-top: 32px;
-            color: #232426;
+        .carousel .card span {
+            color: #6A6D78;
+            font-size: 1.31rem;
         }
 
-        .med-product-card .rel-no-of-tab {
-            color: #878787;
-            font-size: 18px;
-        }
-
-        .med-product-card .rel-company-name {
-            color: #232426;
-            font-size: 14px;
-            text-decoration: underline;
-            font-weight: 600;
-        }
-
-        .med-product-card .rel-prod-price {
-            font-weight: 600;
-            font-size: 24px;
-            margin-bottom: 0px;
-        }
-
-        .med-product-card .related-prod-detail {
-            margin-top: auto;
-        }
-
-        @media (min-width: 992px) {
-            .med-related-prod-wrap {
-                margin: 0px 0px 50px 0px;
+        @media screen and (max-width: 900px) {
+            .wrapper .carousel {
+                grid-auto-columns: calc((100% / 2) - 9px);
             }
+        }
 
-            .med-related-prod-wrap .related-prod-heading {
-                margin: 0px;
-                font-size: 26px;
-            }
-
-            .med-related-prod-wrap .med-rel-prod-slider {
-                margin-top: 40px;
-            }
-
-            .med-slider-arrow-section {
-                display: flex;
+        @media screen and (max-width: 600px) {
+            .wrapper .carousel {
+                grid-auto-columns: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="med-related-prod-wrap" id="med-related-prod-wrapper">
-        <h2 class="related-prod-heading">Related products</h2>
-        <div class="med-rel-prod-slider-wrapper">
-            <div class="med-rel-prod-slider carousel-content">
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-                <div class="med-product-card">
-                    <div class="related-prod-wrapper">
-                        <img src="https://www.practostatic.com/practopedia-images/v3/res-750/confido-tablet-60-s_e54d0810-345d-44bf-9487-454840599ea1.JPG"
-                            alt="" class="related-prod-img">
-                    </div>
-                    <div class="related-prod-detail">
-                        <p class="rel-med-name">Subrex Z</p>
-                        <p class="rel-no-of-tab">30 tablets</p>
-                        <p class="rel-company-name">Abbott</p>
-                        <p class="rel-prod-price">Rs 250.00</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="med-slider-arrow-section">
-                <button class="med-slider-prev med-slider-arrow btn-left" aria-label="left-arrow" onclick=""
-                    id="med-btn-left" type="button"></button>
-                <button class="med-slider-next med-slider-arrow btn-right" aria-label="right-arrow" onclick=""
-                    id="med-btn-right" type="button"></button>
-            </div>
-        </div>
+    <div class="wrapper">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <ul class="carousel">
+            <li class="card">
+                <div class="img"><img src="assets/images/panjabi.jpg" alt="img" draggable="false"></div>
+                <h2>Blanche Pearson</h2>
+                <span>Sales Manager</span>
+            </li>
+            <li class="card">
+                <div class="img"><img src="assets/images/panjabi.jpg" alt="img" draggable="false"></div>
+                <h2>Joenas Brauers</h2>
+                <span>Web Developer</span>
+            </li>
+            <li class="card">
+                <div class="img"><img src="assets/images/panjabi.jpg" alt="img" draggable="false"></div>
+                <h2>Lariach French</h2>
+                <span>Online Teacher</span>
+            </li>
+            <li class="card">
+                <div class="img"><img src="assets/images/panjabi.jpg" alt="img" draggable="false"></div>
+                <h2>James Khosravi</h2>
+                <span>Freelancer</span>
+            </li>
+            <li class="card">
+                <div class="img"><img src="assets/images/panjabi.jpg" alt="img" draggable="false"></div>
+                <h2>Kristina Zasiadko</h2>
+                <span>Bank Manager</span>
+            </li>
+            <li class="card">
+                <div class="img"><img src="assets/images/panjabi.jpg" alt="img" draggable="false"></div>
+                <h2>Donald Horton</h2>
+                <span>App Designer</span>
+            </li>
+        </ul>
+        <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
 
+
     <script>
-        const bindCarouselEvents = (containerId) => {
-            const wrapper = document.getElementById(containerId);
-            const btn_left = wrapper.getElementsByClassName('btn-left')[0]
-            const btn_right = wrapper.getElementsByClassName('btn-right')[0]
-            const content = wrapper.getElementsByClassName('carousel-content')[0]
-            const content_scroll_width = content.scrollWidth;
-            let content_scoll_left = content.scrollLeft;
-            if (btn_right) {
-                btn_right.addEventListener('click', () => {
-                    content_scoll_left += 224;
-                    if (content_scoll_left >= content_scroll_width) {
-                        content_scoll_left = content_scroll_width;
-                    }
-                    content.scrollLeft = content_scoll_left;
-                });
-            }
-            if (btn_left) {
-                btn_left.addEventListener('click', () => {
-                    content_scoll_left -= 224;
-                    content.scrollLeft = content_scoll_left;
-                });
-            }
+        const wrapper = document.querySelector(".wrapper");
+        const carousel = document.querySelector(".carousel");
+        const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+        const arrowBtns = document.querySelectorAll(".wrapper i");
+        const carouselChildrens = [...carousel.children];
 
-            // scroll binding
-            content.addEventListener('scroll', () => {
-                let scrollLeft = Math.ceil(content.scrollLeft)
-                let contentScrollWidth = content.scrollWidth
-                let contentWidth = content.clientWidth
-                let rightEdge = (contentScrollWidth - contentWidth)
-                if (scrollLeft >= rightEdge) {
-                    btn_right.style.display = "none"
-                } else if (scrollLeft < rightEdge) {
-                    btn_right.style.display = "block"
-                }
+        let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
 
-                if (scrollLeft == 0) {
-                    btn_left.style.display = "none"
-                } else if (scrollLeft > 0) {
-                    btn_left.style.display = "block"
-                }
+        // Get the number of cards that can fit in the carousel at once
+        let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
 
-                content_scoll_left = scrollLeft
+        // Insert copies of the last few cards to beginning of carousel for infinite scrolling
+        carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+            carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+        });
+
+        // Insert copies of the first few cards to end of carousel for infinite scrolling
+        carouselChildrens.slice(0, cardPerView).forEach(card => {
+            carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+        });
+
+        // Scroll the carousel at appropriate postition to hide first few duplicate cards on Firefox
+        carousel.classList.add("no-transition");
+        carousel.scrollLeft = carousel.offsetWidth;
+        carousel.classList.remove("no-transition");
+
+        // Add event listeners for the arrow buttons to scroll the carousel left and right
+        arrowBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
             });
+        });
+
+        const dragStart = (e) => {
+            isDragging = true;
+            carousel.classList.add("dragging");
+            // Records the initial cursor and scroll position of the carousel
+            startX = e.pageX;
+            startScrollLeft = carousel.scrollLeft;
         }
 
-        // javascript for scroll on click
-        window.addEventListener('DOMContentLoaded', function () {
-            bindCarouselEvents('med-related-prod-wrapper')
-        });
+        const dragging = (e) => {
+            if (!isDragging) return; // if isDragging is false return from here
+            // Updates the scroll position of the carousel based on the cursor movement
+            carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+        }
+
+        const dragStop = () => {
+            isDragging = false;
+            carousel.classList.remove("dragging");
+        }
+
+        const infiniteScroll = () => {
+            // If the carousel is at the beginning, scroll to the end
+            if (carousel.scrollLeft === 0) {
+                carousel.classList.add("no-transition");
+                carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+                carousel.classList.remove("no-transition");
+            }
+            // If the carousel is at the end, scroll to the beginning
+            else if (Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+                carousel.classList.add("no-transition");
+                carousel.scrollLeft = carousel.offsetWidth;
+                carousel.classList.remove("no-transition");
+            }
+
+            // Clear existing timeout & start autoplay if mouse is not hovering over carousel
+            clearTimeout(timeoutId);
+            if (!wrapper.matches(":hover")) autoPlay();
+        }
+
+        const autoPlay = () => {
+            if (window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
+            // Autoplay the carousel after every 2500 ms
+            timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 2500);
+        }
+        autoPlay();
+
+        carousel.addEventListener("mousedown", dragStart);
+        carousel.addEventListener("mousemove", dragging);
+        document.addEventListener("mouseup", dragStop);
+        carousel.addEventListener("scroll", infiniteScroll);
+        wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+        wrapper.addEventListener("mouseleave", autoPlay);
     </script>
 </body>
 
